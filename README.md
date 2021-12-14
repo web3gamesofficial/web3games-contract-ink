@@ -27,7 +27,7 @@ Web3Games is a new generation gaming ecosystem built on Substrate.
 example:
 
 ```bash
-cd example/token_fungbile
+cd example/token_fungible
 ```
 
 then
