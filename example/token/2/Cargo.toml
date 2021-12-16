@@ -1,8 +1,9 @@
 [package]
-name = "token-fungbile-demo"
+name = "token-fungbile"
 version = "0.0.1"
-authors = ["henry@web3games.org"]
+authors = ["Web3Games <henry@web3games.org>"]
 edition = "2018"
+resolver = "2"
 
 [dependencies]
 ink_primitives = { version = "3.0.0-rc6", default-features = false }
@@ -15,14 +16,7 @@ ink_prelude = { version = "3.0.0-rc6", default-features = false }
 scale = { package = "parity-scale-codec", version = "2.1", default-features = false, features = ["derive"] }
 scale-info = { version = "1.0.0", default-features = false, features = ["derive"], optional = true }
 
-token-fungibel = { git ="https://github.com/web3gamesofficial/web3games-contract-ink.git", branch = "main", default-features = false }
 
-[lib]
-name = "token_fungbile_demo"
-path = "lib.rs"
-crate-type = [
-    "cdylib",
-]
 
 [features]
 default = ["std"]
@@ -31,9 +25,8 @@ std = [
     "ink_env/std",
     "ink_storage/std",
     "ink_primitives/std",
-    "ink_prelude/std",
     "scale/std",
     "scale-info/std",
-    "token_fungbile/std"
+    "ink_prelude/std",
 ]
 ink-as-dependency = []

@@ -7,7 +7,7 @@ pub use token_fungbile::*;
 
 /// Contract Config
 #[ink::contract(env = crate::CustomEnvironment)]
-mod rand_extension {
+pub mod rand_extension {
     use super::TokenFungibleErr;
     use ink_prelude::vec::Vec;
     use crate::{AccountId, Balance, FungibleTokenId};
