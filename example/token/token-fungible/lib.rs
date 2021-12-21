@@ -76,9 +76,9 @@ pub trait TokenFungible {
 /// Contract Config
 #[ink::contract(env = crate::CustomEnvironment)]
 pub mod rand_extension {
-    use super::TokenFungibleErr;
+    use super::*;
     use ink_prelude::vec::Vec;
-    use crate::{AccountId as Other_Account, Balance as Other_Balance, FungibleTokenId};
+
 
 
     #[ink(storage)]
@@ -116,32 +116,32 @@ pub mod rand_extension {
         }
 
         #[ink(message)]
-        pub fn approve_fungible_token(&mut self, id:FungibleTokenId,spender:Other_Account,amount:Other_Balance) -> Result<(), TokenFungibleErr> {
+        pub fn approve_fungible_token(&mut self, id:FungibleTokenId,spender:AccountId,amount:Balance) -> Result<(), TokenFungibleErr> {
             self.env().extension().approve(id,spender,amount)?;
             Ok(())
         }
 
         #[ink(message)]
-        pub fn transfer_fungible_token(&mut self, id:FungibleTokenId,recipient:Other_Account,amount:Other_Balance) -> Result<(), TokenFungibleErr> {
+        pub fn transfer_fungible_token(&mut self, id:FungibleTokenId,recipient:AccountId,amount:Balance) -> Result<(), TokenFungibleErr> {
             self.env().extension().transfer(id,recipient,amount)?;
             Ok(())
         }
 
         #[ink(message)]
-        pub fn transfer_from_fungible_token(&mut self, id:FungibleTokenId,sender:Other_Account,recipient:Other_Account,amount:Other_Balance) -> Result<(), TokenFungibleErr> {
+        pub fn transfer_from_fungible_token(&mut self, id:FungibleTokenId,sender:AccountId,recipient:AccountId,amount:Balance) -> Result<(), TokenFungibleErr> {
             self.env().extension().transfer_from(id,sender,recipient,amount)?;
             Ok(())
         }
 
         #[ink(message)]
-        pub fn mint_fungible_token(&mut self, id:FungibleTokenId,account:Other_Account,amount:Other_Balance) -> Result<(), TokenFungibleErr> {
+        pub fn mint_fungible_token(&mut self, id:FungibleTokenId,account:AccountId,amount:Balance) -> Result<(), TokenFungibleErr> {
             self.env().extension().mint(id,account,amount)?;
             self.env().emit_event(FungibleTokenMint { fungible_token_id: self.value });
             Ok(())
         }
 
         #[ink(message)]
-        pub fn burn_fungible_token(&mut self, id:FungibleTokenId,account:Other_Account,amount:Other_Balance) -> Result<(), TokenFungibleErr> {
+        pub fn burn_fungible_token(&mut self, id:FungibleTokenId,account:AccountId,amount:Balance) -> Result<(), TokenFungibleErr> {
             self.env().extension().burn(id,account,amount)?;
             Ok(())
         }
