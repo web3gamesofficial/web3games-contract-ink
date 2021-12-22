@@ -64,20 +64,23 @@ pub trait TokenMulti {
     #[ink(extension = 65667, returns_result = false)]
     fn transfer_from(id:MultiTokenId,from:AccountId,to:AccountId,token_id:TokenId,amount:Balance);
 
-    #[ink(extension = 65568, returns_result = false)]
+    #[ink(extension = 65668, returns_result = false)]
     fn batch_transfer_from(id:MultiTokenId,from:AccountId,to:AccountId,token_ids:Vec<TokenId>,amounts:Vec<Balance>);
 
-    #[ink(extension = 65569, returns_result = false)]
+    #[ink(extension = 65669, returns_result = false)]
     fn mint(id:MultiTokenId,to:AccountId,token_id:TokenId,amount:Balance);
 
-    #[ink(extension = 65570, returns_result = false)]
+    #[ink(extension = 65670, returns_result = false)]
     fn mint_batch(id:MultiTokenId,to:AccountId,token_ids:Vec<TokenId>,amounts:Vec<Balance>);
 
-    #[ink(extension = 65571, returns_result = false)]
+    #[ink(extension = 65671, returns_result = false)]
     fn burn(id:MultiTokenId,token_id:TokenId,amount:Balance);
 
-    #[ink(extension = 65572, returns_result = false)]
+    #[ink(extension = 65672, returns_result = false)]
     fn burn_batch(id:MultiTokenId,token_ids:Vec<TokenId>,amounts:Vec<Balance>);
+
+    // #[ink(extension = 65672, returns_result = false)]
+    // fn exists(id:MultiTokenId) -> bool;
 }
 
 /// Contract Config
@@ -157,6 +160,14 @@ pub mod rand_extension {
             self.env().extension().burn_batch(id,token_ids,amounts)?;
             Ok(())
         }
+
+
+
+        // #[ink(message)]
+        // pub fn exists(&mut self, id:MultiTokenId) -> Result<(), TokenMultiErr> {
+        //     self.env().extension().exists(id)?;
+        //     Ok(())
+        // }
 
 
         #[ink(message)]
